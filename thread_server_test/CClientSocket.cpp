@@ -25,3 +25,20 @@ void CClientSocket::SetListenSocket(CAsyncSocket* pSocket)
 {
 	m_pListenSocket = pSocket;
 }
+
+void CClientSocket::OnReceive(int nErrorCode)
+{
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
+	CString strTmp = L"";
+	CString strIP = L"";
+	UINT Portnum = 0;
+	TCHAR buf[1024];
+	memset(buf, sizeof(buf), 0);
+
+	GetPeerName(strIP, Portnum);
+	if (Receive(buf, sizeof(buf) > 0))
+	{
+		
+	}
+	CSocket::OnReceive(nErrorCode);
+}
