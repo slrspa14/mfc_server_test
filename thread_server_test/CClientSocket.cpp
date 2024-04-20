@@ -30,15 +30,17 @@ void CClientSocket::OnReceive(int nErrorCode)
 {
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	CString strTmp = L"";
-	CString strIP = L"";
-	UINT Portnum = 0;
+	CString IP = L"";
+	UINT Port = 0;
 	TCHAR buf[1024];
 	memset(buf, sizeof(buf), 0);
 
-	GetPeerName(strIP, Portnum);
+	GetPeerName(IP, Port);
 	if (Receive(buf, sizeof(buf) > 0))
 	{
 		
+		strTmp.Format(_T("%s:%d : %s"), IP, Port, buf);
+		//받아온 메시지 띄우기
 	}
 	CSocket::OnReceive(nErrorCode);
 }
